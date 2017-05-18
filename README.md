@@ -1,9 +1,10 @@
 # ColumnAnimViewProject
-##为何要用带动画的柱状图呢？
+为何要用带动画的柱状图呢？
+-------
 
 by: lixiaodaoaaa 简单总结下:
 
-最近，项目中遇到一个地方，要用到柱状图。所以这篇文章主要讲怎么搞一个柱子。100行代码，搞定柱状图!
+最近，项目中遇到一个地方，要用到柱状图。本DEmo就是简单显示一个带动画效果的柱状图,所以这篇文章主要讲怎么搞一个柱子。100行代码，搞定柱状图!
 ![这里写图片描述](http://img.blog.csdn.net/20170519010413220?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl4aWFvZGFvYWFh/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 圆角，头顶带数字。恩，这样用drawable也可以搞定。但是，这个柱子是有一个动画的，就是进入到界面的时候柱子不断的长高。这样的话，综合考虑还是用自定义View来做比较简便。效果如下图了：
