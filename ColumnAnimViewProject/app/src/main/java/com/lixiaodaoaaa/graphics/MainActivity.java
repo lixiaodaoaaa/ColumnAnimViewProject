@@ -21,28 +21,33 @@ package com.lixiaodaoaaa.graphics;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 
 import com.gcssloop.graphics.R;
-import com.lixiaodaoaaa.view.pieview.flower.FlowerLayout;
+import com.lixiaodaoaaa.view.pieview.PColumn;
 
 public class MainActivity extends AppCompatActivity {
 
-
-    private FlowerLayout flowerLayout;
+    private PColumn column_one;
+    private PColumn column_two;
+    private PColumn column_three;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_flower);
+        setContentView(R.layout.activity_main);
+
         initAllViews();
     }
 
     private void initAllViews() {
-        flowerLayout = (FlowerLayout) findViewById(R.id.myFlower);
+        column_one = (PColumn) findViewById(R.id.column_one);
+        column_two = (PColumn) findViewById(R.id.column_two);
+        column_three = (PColumn) findViewById(R.id.column_three);
+
+        column_one.setData(0, 100);
+        column_two.setData(30, 400);
+        column_three.setData(450, 900);
+
     }
 
-    public void addImageView(View view) {
-        flowerLayout.addFlower();
-    }
 }
