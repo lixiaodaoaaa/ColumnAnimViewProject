@@ -1,8 +1,13 @@
 package com.lixiaodaoaaa.view.pieview.flower;
 
+import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.graphics.PointF;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -17,17 +22,25 @@ import java.util.Random;
  */
 
 public class FlowerLayout extends RelativeLayout {
+
+    private int width, height;
+
     private Random random;
     private int[] imageResourceIds;
+    private int imageViewHeight;
+    private int imageViewWidth;
 
     public FlowerLayout(Context context) {
         super(context);
         initData();
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void initData() {
         random = new Random();
-        imageResourceIds = new int[]{R.drawable.logo_sinaweibo, R.drawable.logo_sms, R.drawable.logo_tencentweibo};
+        imageResourceIds = new int[]{R.drawable.logo_sinaweibo, R.drawable.logo_sinaweibo, R.drawable.logo_sinaweibo};
+        imageViewHeight = getResources().getDrawable(R.drawable.logo_sinaweibo).getIntrinsicHeight();
+        imageViewWidth = getResources().getDrawable(R.drawable.logo_sinaweibo).getIntrinsicWidth();
     }
 
 
@@ -41,6 +54,12 @@ public class FlowerLayout extends RelativeLayout {
         initData();
     }
 
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        width = getMeasuredWidth();
+        height = getMeasuredHeight();
+    }
 
     //add flower******************************************************************
     public void addFlower() {
@@ -51,21 +70,49 @@ public class FlowerLayout extends RelativeLayout {
         relativePara.addRule(ALIGN_PARENT_BOTTOM);
         relativePara.addRule(CENTER_HORIZONTAL);
         imageView.setLayoutParams(relativePara);
-        addView(imageView);
         setAnimation(imageView);
+        addView(imageView);
     }
 
 
     public void setAnimation(ImageView imageView) {
 
-        AnimatorSet animatorSetIn = new AnimatorSet();
+        AnimatorSet allAnimation = new AnimatorSet();
 
-        ObjectAnimator alphaAnimator = ObjectAnimator.ofFloat(imageView, "alpha", 0.3f, 1.0f);
-        ObjectAnimator scaleAnimatorX = ObjectAnimator.ofFloat(imageView, "scaleX", 0.3f, 1.0f);
-        ObjectAnimator scaleAnimatorY = ObjectAnimator.ofFloat(imageView, "scaleY", 0.3f, 1.0f);
-
-        animatorSetIn.playTogether(alphaAnimator, scaleAnimatorX, scaleAnimatorY);
-        animatorSetIn.setDuration(3000);
-        animatorSetIn.start();
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.playTogether(ObjectAnimator.ofFloat(imageView, "alpha", 0.3f, 1.0f)
+                , ObjectAnimator.ofFloat(imageView, "scaleX", 0.3f, 1.0f)
+                , ObjectAnimator.ofFloat(imageView, "scaleY", 0.3f, 1.0f)
+        );
+        animatorSet.setDuration(334);
+        allAnimation.playSequentially(animatorSet, setImageViewBeziAnimation(imageView));
+        allAnimation.start();
     }
+
+    public Animator setImageViewBeziAnimation(final ImageView imageView) {
+
+        PointF startPoint = new PointF((width - imageViewWidth) / 2, height - imageViewHeight - imageViewHeight / 4);
+
+        int newHeight = height - imageViewHeight;
+        PointF endPoint = new PointF(random.nextInt(width - imageViewWidth), 0);
+        PointF controlPoint1 = new PointF(random.nextInt(width), random.nextInt(newHeight / 2 + newHeight / 2));
+        PointF controlPoint2 = new PointF(random.nextInt(width), random.nextInt(newHeight / 2));
+
+
+        FlowerTypeEvaluator flowerTypeEvaluator = new FlowerTypeEvaluator(startPoint, controlPoint1, controlPoint2, endPoint);
+
+        ValueAnimator valueAnimator = ObjectAnimator.ofObject(flowerTypeEvaluator, startPoint, endPoint);
+        valueAnimator.setDuration(3 * 1000);
+
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                PointF pointF = (PointF) animation.getAnimatedValue();
+                imageView.setX(pointF.x);
+                imageView.setY(pointF.y);
+            }
+        });
+        return valueAnimator;
+    }
+
 }
