@@ -17,6 +17,8 @@ import com.gcssloop.graphics.R;
 
 import java.util.Random;
 
+import static android.R.attr.y;
+
 /**
  * Created by lixiaodaoaaa on 2017/8/7.
  */
@@ -91,10 +93,10 @@ public class FlowerLayout extends RelativeLayout {
 
     public Animator setImageViewBeziAnimation(final ImageView imageView) {
 
-        PointF startPoint = new PointF((width - imageViewWidth) / 2, height - imageViewHeight - imageViewHeight / 4);
+        PointF startPoint = new PointF((width - imageViewWidth) / 2, height - imageViewHeight);
 
         int newHeight = height - imageViewHeight;
-        PointF endPoint = new PointF(random.nextInt(width - imageViewWidth), 0);
+        PointF endPoint = new PointF(random.nextInt(width - imageViewWidth), -imageViewHeight);
         PointF controlPoint1 = new PointF(random.nextInt(width), random.nextInt(newHeight / 2 + newHeight / 2));
         PointF controlPoint2 = new PointF(random.nextInt(width), random.nextInt(newHeight / 2));
 
@@ -110,6 +112,9 @@ public class FlowerLayout extends RelativeLayout {
                 PointF pointF = (PointF) animation.getAnimatedValue();
                 imageView.setX(pointF.x);
                 imageView.setY(pointF.y);
+                if (y <= 0) {
+                    removeView(imageView);
+                }
             }
         });
         return valueAnimator;
