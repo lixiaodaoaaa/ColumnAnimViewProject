@@ -9,7 +9,6 @@ import android.graphics.PointF;
 
 public class FlowerTypeEvaluator implements TypeEvaluator<PointF> {
 
-
     private PointF pStart, pControl1, pControl2, pEnd;
 
     public FlowerTypeEvaluator(PointF pStart, PointF pControl1, PointF pControl2, PointF pEnd) {
@@ -21,6 +20,7 @@ public class FlowerTypeEvaluator implements TypeEvaluator<PointF> {
 
     @Override
     public PointF evaluate(float t, PointF startValue, PointF endValue) {
+        //*********************t的范围是0-1******************************//
         PointF pointF = new PointF();
 
         pointF.x = pStart.x * (1 - t) * (1 - t) * (1 - t) //
