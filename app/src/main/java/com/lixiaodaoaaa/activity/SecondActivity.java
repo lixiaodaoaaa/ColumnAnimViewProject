@@ -19,47 +19,23 @@
 
 package com.lixiaodaoaaa.activity;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.gcssloop.graphics.R;
 import com.lixiaodaoaaa.uitls.ToastUtil;
-import com.lixiaodaoaaa.view.pieview.flower.FlowerLayout;
 
-public class MainActivity extends AppCompatActivity {
-
-
-    private FlowerLayout flowerLayout;
-    private Context context;
+public class SecondActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_flower);
-        initAllViews();
-        initDatas();
-    }
-
-    private void initDatas() {
-    }
-
-    private void initAllViews() {
-        flowerLayout = (FlowerLayout) findViewById(R.id.myFlower);
-    }
-
-    public void addImageView(View view) {
-        flowerLayout.addFlower();
+        setContentView(R.layout.activity_second);
     }
 
     public void toastTest(View view) {
-        ToastUtil.toast(MainActivity.this, "hello Word", true);
-    }
-
-    public void switchToSecondActivity(View view) {
-        startActivity(new Intent(MainActivity.this, SecondActivity.class));
+        ToastUtil.toast(this, " second activity", false);
     }
 
     @Override

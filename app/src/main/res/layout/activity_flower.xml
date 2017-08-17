@@ -7,11 +7,29 @@
     android:layout_weight="1"
 >
 
-    <Button android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="addImageView"
-            android:text="add flower"
+    <Button
+        android:id="@+id/addFlowerBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="addImageView"
+        android:text="add flower"
     />
 
+
+    <Button
+        android:id="@+id/toastTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addFlowerBtn"
+        android:onClick="toastTest"
+        android:text="Toast Test "
+    />
+
+    <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toastTest"
+            android:onClick="switchToSecondActivity"
+            android:text="switchToSecondActivity"
+    />
 
 </com.lixiaodaoaaa.view.pieview.flower.FlowerLayout>
