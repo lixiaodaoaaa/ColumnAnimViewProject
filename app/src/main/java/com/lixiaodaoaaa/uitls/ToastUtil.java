@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.gcssloop.graphics.R;
 
+
 /**
  * @author miaoxiongfei@foxmail.com
  * @date 2016-05-11 13:44
@@ -17,16 +18,13 @@ import com.gcssloop.graphics.R;
 public class ToastUtil {
 
     private static Toast mToast;
-    private static boolean upToast;
 
 
     public static void toast(Context context, CharSequence character, boolean isCenter) {
         if (mToast == null) {
             mToast = getCustomToast(context);
         }
-        setUpToast(context, isCenter);
-        View toastView = mToast.getView();
-        ((TextView) toastView.findViewById(R.id.tvToast)).setText(character);
+        setUpToast(context, character, isCenter);
         mToast.show();
     }
 
@@ -50,12 +48,13 @@ public class ToastUtil {
                 context.getResources().getDisplayMetrics());
     }
 
-    public static void setUpToast(Context context, boolean isCenter) {
+    public static void setUpToast(Context context, CharSequence character, boolean isCenter) {
         if (isCenter) {
             mToast.setGravity(Gravity.CENTER, 0, 0);
         } else {
-            mToast.setGravity(Gravity.CENTER | Gravity.BOTTOM, 0, dpToPx(240, context));
-            View toastView = mToast.getView();
+            mToast.setGravity(Gravity.CENTER | Gravity.BOTTOM, 0, 0);
         }
+        View toastView = mToast.getView();
+        ((TextView) toastView.findViewById(R.id.tvToast)).setText(character);
     }
 }
