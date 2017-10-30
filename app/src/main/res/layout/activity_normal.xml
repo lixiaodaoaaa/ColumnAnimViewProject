@@ -4,16 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="1"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
 >
 
     <Button android:layout_width="match_parent" android:layout_height="wrap_content"
-
-            android:text="next Activity"
             android:onClick="skipNextActivity"
     />
     <LinearLayout
@@ -21,15 +19,6 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:orientation="vertical">
-
-
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/shop_img"
-            android:layout_width="224dp"
-            android:layout_height="224dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="80dp"
-            android:src="@drawable/vendor_home_shopping_icon_gif"/>
 
     </LinearLayout>
 </LinearLayout>

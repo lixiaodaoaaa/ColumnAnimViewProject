@@ -8,28 +8,19 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
 >
-
-    <Button android:layout_width="match_parent" android:layout_height="wrap_content"
-
-            android:text="next Activity"
-            android:onClick="skipNextActivity"
-    />
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:orientation="vertical">
-
-
+        android:layout_height="match_parent"
+        android:gravity="center"
+    >
         <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/shop_img"
-            android:layout_width="224dp"
-            android:layout_height="224dp"
+            android:id="@+id/outgooding_iv"
+            android:layout_width="375dp"
+            android:layout_height="375dp"
+            android:layout_centerInParent="true"
             android:layout_gravity="center"
-            android:layout_marginTop="80dp"
-            android:src="@drawable/vendor_home_shopping_icon_gif"/>
-
-    </LinearLayout>
+            android:padding="20dp"
+            android:src="@drawable/vendor_payinfo_outgooding"/>
+    </RelativeLayout>
 </LinearLayout>
