@@ -24,6 +24,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.gcssloop.graphics.R;
 import com.lixiaodaoaaa.view.pieview.PColumn;
+import com.lixiaodaoaaa.view.pieview.RoadTableView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,9 +35,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+//        setContentView(R.layout.activity_main);
 
-        initAllViews();
+        setContentView(new RoadTableView(this));
+//        initAllViews();
     }
 
     private void initAllViews() {
